@@ -10,6 +10,8 @@
 #include <stdio.h>
 #include "util.h"
 #include <fcntl.h>
+
+//if the file size > 2GB, it runs very well
 void writeLarge(int fd, const void *mem, size_t count)
 {
 	int G = (size_t)count / 1073741824;
@@ -18,7 +20,7 @@ void writeLarge(int fd, const void *mem, size_t count)
 	{
         write(fd, mem+(size_t)i*1073741824,1073741824);
         //lseek(fd, (size_t)(i+1)*1073741824 , SEEK_SET);
-		lseek(fd, 0, SEEK_END);
+	lseek(fd, 0, SEEK_END);
 	}
 	write(fd,mem+(size_t)G*1024*1024*1024,(size_t)mod);
 	fsync(fd);

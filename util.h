@@ -1,13 +1,4 @@
 #pragma once
-#define UNLOCK  0
-#define LOCK    -1
-
-#define NAIVE_ALG           0
-#define COPY_ON_UPDATE_ALG  1
-#define ZIGZAG_ALG          2
-#define PINGPONG_ALG        3
-#define MK_ALG              4
-#define LL_ALG              5
 
 #include <stdio.h>
 #include<sys/mman.h>

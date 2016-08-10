@@ -11,27 +11,14 @@
 #include "util.h"
 #include <fcntl.h>
 
-//if the file size > 2GB, it runs very well
-void writeLarge(int fd, const void *mem, size_t count)
-{
-	int G = (size_t)count / 1073741824;
-	int mod = count % 1073741824;
-	for(int i=0; i< G; i++)
-	{
-        write(fd, mem+(size_t)i*1073741824,1073741824);
-        //lseek(fd, (size_t)(i+1)*1073741824 , SEEK_SET);
-	lseek(fd, 0, SEEK_END);
-	}
-	write(fd,mem+(size_t)G*1024*1024*1024,(size_t)mod);
-	fsync(fd);
-}
+
 int main()
 {
 	int sz=0;
 	scanf("%d",&sz);
 	size_t length = (size_t)1024*1024*1024*sz;
 	char* mem = (char*) malloc(sizeof(char)*(size_t)length);
-	int fd = open("./test.dat",O_RDWR | O_CREAT , 666);
+	int fd = open("./test.dat",O_RDWR | O_TRUNC | O_SYNC | O_CREAT , 666);
 	long begin = get_utime();
 	for(size_t i=0; i<length; i++)
 	{

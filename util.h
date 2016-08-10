@@ -18,4 +18,4 @@
 long long get_ntime(void);
 long long get_utime(void);
 long long get_mtime(void);
-
+void writeLarge(int fd, const void *mem, size_t count);
